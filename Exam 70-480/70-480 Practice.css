@@ -1,0 +1,128 @@
+/* General */
+body {
+    font-family: "Segoe UI", "Tahoma", Helvetica, sans-serif;    
+}
+
+header, section {
+    margin: 50px;
+}
+
+section > h3 {
+    text-align: center;
+}
+
+hgroup {
+    width: 100%;
+    text-align: center;
+}
+
+h1, h3 {
+    margin: 10px;
+}
+
+section {
+    width: 80%;
+    max-width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Forms */
+.form-item {
+    width: 100%;
+    margin: 5px;
+    float: left;
+}
+
+.form-item label {
+    float: left;
+}
+
+.form-item input {
+    float: right;
+    margin: 0;
+    text-align: right;
+}
+
+.form-item label[id^=email] {
+    color: dodgerblue;
+}
+
+.form-item label[id$=label]::first-letter {
+    color: orangered;
+}
+
+input[type='submit']:hover {
+    cursor: pointer;
+}
+
+/* Lists */
+li + li {
+    color: forestgreen;
+    font-style: italic;
+}
+
+#lists li:first-of-type {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+}
+
+/* Columns */
+#text-cols p {
+    columns: 2;
+    border: 1px solid black;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#text-cols p::first-line {
+    color: slateblue;
+}
+
+/* svg */
+#svg-rect {
+    width: 50%;
+    text-align: center;
+    margin: 20px 0;
+    float: left;
+}
+
+#svg-circle {
+    width: 50%;
+    text-align: center;
+    margin: 20px 0;
+    float: right;
+}
+
+#svg-circle svg:hover {
+    cursor: pointer;
+    transform: scale(0.5);
+}
+
+#svg-rect label,
+#svg-circle label {
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+}
+
+svg + input[type=button] {
+    width: 60%;
+    margin: 20px 20%;
+    cursor: pointer;
+}
+
+#layout-animate {
+    overflow: hidden;
+}
+
+/* Web Workers */
+#worker-start,
+#worker-results {
+    margin-top: 20px;
+}
+
+/* XML Http Request */
+#xml-elements-container {
+    margin-top: 20px;
+}

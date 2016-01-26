@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Exam 70-480 Practice</title>
+    <link rel="stylesheet" type="text/css" href="70-480 Practice.css" media="screen">
+</head>
+
+<body>
+
+    <header>
+        <hgroup>
+            <h1>Exam 70-480</h1>
+            <h3>Practice</h3>
+            <p>Practice and examples from various study materials.</p>
+        </hgroup>
+    </header>
+
+    <section id="forms">
+        <h3>Forms</h3>
+        <form>
+            <div class="form-item">
+                <label id="name-label">Enter your first name:</label>
+                <input type="text" required="required" placeholder="Name" />
+            </div>
+            <div class="form-item">
+                <label id="email-label">Enter your email:</label>
+                <input type="email" required="required" placeholder="Email" />
+            </div>
+            <input type="submit" value="Submit" />
+        </form>
+    </section>
+
+    <section id="lists">
+        <h3>Lists</h3>
+        <ul>
+            <li>html</li>
+            <li>css</li>
+            <li>javascript</li>
+            <ul>
+    </section>
+
+    <section id="text-cols">
+        <h3>Columns</h3>
+        <p>A worker is an object created using a constructor (e.g. Worker()) that runs a named JavaScript file — this file contains
+            the code that will run in the worker thread; workers run in another global context that is different from the
+            current window. Thus, using the window shortcut to get the current global scope (instead of self) within a Worker
+            will return an error. The worker context is represented by a Dedicated Worker Global Scope object in the case
+            of dedicated workers (standard workers that are utilized by a single script; shared workers use Shared Worker
+            Global Scope). A dedicated worker is only accessible from the script that first spawned it, whereas shared workers
+            can be accessed from multiple scripts.
+        </p>
+    </section>
+
+    <section id="layout-animate">
+        <h3>Layout and Animation</h3>
+        <div id="svg-rect">
+            <label>svg rect</label>
+            <svg width="100" height="100">
+                <rect id="rect" x="10" y="10" width="80" height="80" fill="dodgerblue" />
+            </svg>
+            <input type="button" onclick="scale()" value="Scale">
+        </div>
+        <div id="svg-circle">
+            <label>svg circle</label>
+            <svg width="100" height="100">
+                <circle cx="50" cy="50" r="50" fill="orangered" />
+            </svg>
+        </div>
+        <script>
+            function scale() {
+                var rect = document.getElementById('rect');
+                rect.setAttribute("transform", "scale(0.5)");
+            }
+        </script>
+    </section>
+
+    <section id="web-workers">
+        <h3>Web Workers</h3>
+        <div id="worker-start">
+            <label>Count to:</label>
+            <input id="count-to" type="number" step="0.5" max="100" min="0">
+            <input id="count-button" type="button" value="Work" onclick="count()">
+        </div>
+        <div id="worker-results">
+            <label id="counting">counting to...</label>
+            <label id="count-done"></label>
+        </div>
+
+        <script>
+            // using blob instead of external .js file 
+            var blob = new Blob(["onmessage = function(e) { postMessage(e.data); }"]);
+
+            // obtain a blob URL reference to our worker 'file'.
+            var blobURL = window.URL.createObjectURL(blob);
+
+            var worker = new Worker(blobURL);
+            worker.onmessage = function(e) {
+                var label = document.getElementById('count-done');
+                label.innerHTML = e.data;
+            };
+            
+            function count() {
+                var countTo = document.getElementById('count-to').value;
+                worker.postMessage(countTo);
+            }
+        </script>
+    </section>
+
+    <section id="xml-http-request">
+        <h3>XMLHttpRequest</h3>
+        <div id="xml-elements-container">
+            <input id="xml-button" type="button" value="Request" onclick="xmlrequest()">
+            <label id="xml-result"></label>
+        </div>
+
+        <script>
+            function xmlrequest () {
+                var xmlhttp;
+                
+                if (window.XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4) {
+                        document.getElementById('xml-result').outerHTML = 
+                        xmlhttp.responseText;
+                    }
+                };
+                xmlhttp.open('GET', 'xmlhttp.txt', true);
+                xmlhttp.send();
+            }
+        </script>
+    </section>
+</body>
+
+</html>
